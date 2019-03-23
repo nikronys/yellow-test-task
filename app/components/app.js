@@ -1,11 +1,13 @@
 import React from 'react';
-import Header from 'components/header/header.container';
+import {Route} from 'react-router';
+
+import Home from 'components/home/home.container';
 
 class App extends React.Component {
   render() {
     return (
       <React.Fragment>
-        <Header />
+        <Route path="/" component={Home}/>
       </React.Fragment>
     );
   }
