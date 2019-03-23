@@ -33,5 +33,12 @@ module.exports = {
       template: "./index.html",
       filename: "index.html"
     })
-  ]
+  ],
+  resolve: {
+    extensions: ['.js'],
+    alias: {
+      components: path.resolve(__dirname, 'app/components'),
+      common: path.resolve(__dirname, 'app/components/common')
+    }
+  }
 };
