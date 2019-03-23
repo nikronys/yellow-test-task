@@ -1,13 +1,22 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 
-import logo from 'assets/logo.png';
+import BearFace from 'assets/bear-face.js';
 
 import Header from 'common/header/header.container';
+import {BackgroundBox, Main, LoginButton} from './home.styles.js';
 
 const Home = () => {
   return (
-    <Header />
+    <React.Fragment>
+      <Header />
+      <Main>
+        <BackgroundBox>
+          <BearFace />
+          <LoginButton>Let me in</LoginButton>
+        </BackgroundBox>
+      </Main> 
+    </React.Fragment>
   );
 };
 

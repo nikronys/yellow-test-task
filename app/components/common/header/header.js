@@ -1,15 +1,15 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 
-import logo from 'assets/logo@2x.png';
+import Logo from 'assets/logo.js';
 
-import {HeaderWrapper, Link, Logo} from './header.styles.js';
+import {HeaderWrapper, Link} from './header.styles.js';
 
 const Header = () => {
   return (
     <HeaderWrapper>
       <Link href='/'>
-        <Logo src={logo} alt="Logo"/>
+        <Logo/>
       </Link>
     </HeaderWrapper>
   );
