@@ -25,6 +25,38 @@ module.exports = {
             loader: "html-loader"
           }
         ]
+      },
+      {
+        test: /\.css$/,
+        use: [
+          'style-loader',
+          'css-loader'
+        ]
+      },
+      {
+        test: /\.png$/,
+        loader: 'url-loader',
+        options: {
+          mimetype: 'image/png'
+        }
+      },
+      {
+        test: /\.jpg$/,
+        loader: 'url-loader',
+        options: {
+          mimetype: 'image/jpg'
+        }
+      },
+      {
+        test: /\.ico$/,
+        loader: 'url-loader',
+        options: {
+          mimetype: 'image/x-icon'
+        }
+      },
+      { 
+        test: /\.svg$/, 
+        loader: 'svg-inline-loader' 
       }
     ]
   },
@@ -38,7 +70,11 @@ module.exports = {
     extensions: ['.js'],
     alias: {
       components: path.resolve(__dirname, 'app/components'),
-      common: path.resolve(__dirname, 'app/components/common')
+      common: path.resolve(__dirname, 'app/components/common'),
+      assets: path.resolve(__dirname, 'app/assets')
     }
+  },
+  devServer: {
+    port: 5000
   }
 };

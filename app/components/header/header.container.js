@@ -2,14 +2,15 @@ import React from 'react';
 import PropTypes from 'prop-types';
 
 import Header from './header';
+import Logo from 'assets/logo.svg';
 
 class HeaderContainer extends React.Component {
   render() {
     return (
-      <div className="col-xs-12">
-        <Header
-
-        />
+      <div>
+        <Header>
+          
+        </Header>
       </div>
     );
   }

@@ -1,12 +1,16 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 
+import {HeaderWrapper, Logo} from './header.styles.js';
+
 class Header extends React.Component {
   render() {
     return (
-      <div className="col-xs-12">
-
-      </div>
+      <HeaderWrapper>
+        <a href="/">
+          <Logo />
+        </a>
+      </HeaderWrapper>
     );
   }
 }
