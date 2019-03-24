@@ -13,6 +13,10 @@ export const Main = styled.main`
   display: flex;
   justify-content: center;
   height: calc(100% - 176px);
+
+  ${props => props.loading && css`
+    align-items: center;
+  `}
 `;
 
 export const Text = styled.span`
@@ -29,6 +33,7 @@ export const DatePicker = styled(ReactDatePicker)`
   border-radius: 11px;
   padding: 0 15px;
   box-sizing: border-box;
+  outline: none;
 `;
 
 export const RunData = styled.ul`
@@ -62,9 +67,10 @@ export const RunDataElement = styled.li`
 export const AddButton = styled.button`
   background: none;
   border: none;
-  position: absolute;
+  position: fixed;
   bottom: 40px;
   right: 40px;
+  outline: none;
 `;
 
 export const Bold = styled.b`

@@ -1,6 +1,8 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import moment from 'moment';
+import { css } from '@emotion/core';
+import CircleLoader from 'react-spinners/ClipLoader';
 
 import 'react-datepicker/dist/react-datepicker.css';
 
@@ -25,6 +27,12 @@ import {
   EmptyJogsButton
 } from './jogs.styles.js';
 
+const override = css`
+  display: block;
+  margin: 0 auto;
+  border-color: red;
+`;
+
 const Jogs = props => {
   const {
     startDate,
@@ -32,12 +40,13 @@ const Jogs = props => {
     jogs,
     onStartDateChange,
     onEndDateChange,
-    createJog
+    createJog,
+    loading
   } = props;
 
-  const renderRunStatistic = (run, index) => {
+  const renderRunStatistic = run => {
     return (
-      <RunElement key={run.id} resetMargin={index === jogs.length - 1}>
+      <RunElement key={run.id}>
         <JogIcon />
         <RunData>
           <RunDataElement resetMargin>{moment(run.date).format('DD.MM.YYYY')}</RunDataElement>
@@ -58,22 +67,30 @@ const Jogs = props => {
         <Text>Date to</Text>
         <DatePicker selected={endDate} onChange={onEndDateChange}/>
       </DatePickersContainer>
-      <Main>
-        {jogs.length 
-          ? 
-          <RunList>
-            {jogs.map(renderRunStatistic)}
-          </RunList>
-          :
-          <EmptyJogsContainer>
-            <SadFace />
-            <EmptyJogsTitle>Nothing is here</EmptyJogsTitle>
-            <EmptyJogsButton onClick={createJog}>Create your jog first</EmptyJogsButton>
-          </EmptyJogsContainer>
+      <Main loading={loading}>
+        {loading ? 
+          <CircleLoader
+            css={override}
+            sizeUnit={'px'}
+            size={150}
+            color={'#123abc'}
+            loading={loading}
+          /> :
+          jogs.length 
+            ? 
+            <RunList>
+              {jogs.map(renderRunStatistic)}
+            </RunList>
+            :
+            <EmptyJogsContainer>
+              <SadFace />
+              <EmptyJogsTitle>Nothing is here</EmptyJogsTitle>
+              <EmptyJogsButton onClick={createJog}>Create your jog first</EmptyJogsButton>
+            </EmptyJogsContainer>
         }
       </Main>
-      {!!jogs.length && 
-        <AddButton>
+      {!!jogs.length && !loading &&
+        <AddButton onClick={createJog}>
           <AddButtonIcon />
         </AddButton>
       }
@@ -94,6 +111,7 @@ Jogs.propTypes = {
     time: PropTypes.number.isRequired,
     date: PropTypes.number.isRequired,
   })).isRequired,
+  loading: PropTypes.bool.isRequired
 };
 
 export default Jogs;

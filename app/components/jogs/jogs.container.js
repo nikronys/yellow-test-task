@@ -2,19 +2,30 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import * as jogsActions from 'resources/jogs/jogs.actions';
 import { connect } from 'react-redux';
+import axios from 'axios';
 
 import Jogs from './jogs';
 
 class JogsContainer extends React.Component {
   state = {
     startDate: null,
-    endDate: null
+    endDate: null,
+    loading: true
   }
 
   componentDidMount() {
     const {getJogs} = this.props;
-    
-    getJogs();
+
+    axios.get('https://jogtracker.herokuapp.com/api/v1/data/sync', {
+      headers: {
+        'Authorization': 'Bearer ' + window.localStorage.getItem('token')
+      }
+    })
+      .then(res => {
+        getJogs(res.data.response.jogs);
+        this.setState({loading: false});
+      })
+      .catch(err => console.log(err));
   }
   
   checkDate = jog => {
@@ -40,7 +51,7 @@ class JogsContainer extends React.Component {
   }
 
   render() {
-    const {startDate, endDate} = this.state;
+    const {startDate, endDate, loading} = this.state;
     const {jogs} = this.props;
 
     return (
@@ -51,6 +62,7 @@ class JogsContainer extends React.Component {
         onEndDateChange={this.onEndDateChange}
         jogs={startDate && endDate ? this.checkDate(jogs) : jogs}
         createJog={this.createJog}
+        loading={loading}
       />
     );
   }

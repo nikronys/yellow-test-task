@@ -1,5 +1,3 @@
-import {fetchJogs} from './jogs.api';
-
 export const GET_JOGS = 'GET_JOGS';
 
 export const getJogsAction = jogs => ({
@@ -7,9 +5,8 @@ export const getJogsAction = jogs => ({
   payload: jogs,
 });
 
-export const getJogs = () => async dispatch => {
+export const getJogs = jogs => async dispatch => {
   try {
-    const jogs = await fetchJogs();
     dispatch(getJogsAction(jogs));
   } catch (error) {
     console.log(error);
