@@ -6,11 +6,9 @@ import Header from './header';
 class HeaderContainer extends React.Component {
   render() {
     return (
-      <div>
-        <Header>
-          
-        </Header>
-      </div>
+      <Header>
+        
+      </Header>
     );
   }
 }

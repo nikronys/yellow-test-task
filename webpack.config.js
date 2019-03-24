@@ -7,7 +7,7 @@ module.exports = {
   },
   output: {
     filename: 'bundle.js',
-    path: path.join(__dirname, 'build'),
+    path: path.join(__dirname, 'build')
   },
   module: {
     rules: [
@@ -75,6 +75,7 @@ module.exports = {
     }
   },
   devServer: {
-    port: 5000
+    port: 5000,
+    historyApiFallback: true
   }
 };

@@ -16,6 +16,7 @@
   "license": "MIT",
   "dependencies": {
     "react": "^16.8.4",
+    "react-datepicker": "^2.2.0",
     "react-dom": "^16.8.4",
     "react-inlinesvg": "^0.8.4",
     "react-router": "^5.0.0",
@@ -25,6 +26,7 @@
   },
   "devDependencies": {
     "@babel/core": "^7.4.0",
+    "@babel/plugin-proposal-class-properties": "^7.4.0",
     "@babel/preset-env": "^7.4.1",
     "@babel/preset-react": "^7.0.0",
     "babel-eslint": "^10.0.1",
