@@ -1,10 +1,21 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 
-import BearFace from 'assets/bear-face.js';
+import 'react-datepicker/dist/react-datepicker.css';
+
+import CancelIcon from 'assets/cancel.js';
 
 import Header from 'common/header/header.container';
-import {FormBox, Main, SaveButton} from './addJog.styles.js';
+import {
+  FormBox, 
+  Main, 
+  Cancel, 
+  SaveButton,
+  DatePicker,
+  InputWithDescription,
+  Description,
+  Input
+} from './addJog.styles.js';
 
 const AddJog = () => {
   return (
@@ -12,7 +23,21 @@ const AddJog = () => {
       <Header />
       <Main>
         <FormBox>
-          <BearFace />
+          <Cancel>
+            <CancelIcon />
+          </Cancel>
+          <InputWithDescription>
+            <Description>Distance</Description>
+            <Input type='number'/>
+          </InputWithDescription>
+          <InputWithDescription>
+            <Description>Time</Description>
+            <Input type='number'/>
+          </InputWithDescription>
+          <InputWithDescription>
+            <Description>Time</Description>
+            <DatePicker />
+          </InputWithDescription>
           <SaveButton>Save</SaveButton>
         </FormBox>
       </Main> 

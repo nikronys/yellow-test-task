@@ -1,4 +1,5 @@
 import styled from 'styled-components';
+import ReactDatePicker from 'react-datepicker';
 
 export const FormBox = styled.div`
   height: 379px;
@@ -9,9 +10,9 @@ export const FormBox = styled.div`
   flex-direction: column;
   align-items: center;
   justify-content: space-between;
-  padding-top: 77px;
-  padding-bottom: 36px;
+  padding: 100px 90px 47px 90px;
   box-sizing: border-box;
+  position: relative;
 `;
 
 export const Main = styled.main`
@@ -22,12 +23,49 @@ export const Main = styled.main`
 `;
 
 export const SaveButton = styled.button`
-  width: 151px;
-  height: 60px;
+  width: 100%;
+  height: 42px;
   border-radius: 36px;
   border: solid 3px #ffffff;
   background: transparent;
   color: white;
-  font-size: 20px
+  font-size: 12px
   font-weight: 500;
+`;
+
+export const Cancel = styled.button`
+  position: absolute;
+  top: 24px;
+  right: 27px;
+  background: none;
+  border: none;
+`;
+
+export const DatePicker = styled(ReactDatePicker)`
+  border: 1px solid #979797;
+  height: 31px;
+  color: #979797;
+  border-radius: 11px;
+  box-sizing: border-box;
+  width: 236px;
+`;
+
+export const InputWithDescription = styled.div`
+  display: flex;
+  justify-content: space-between;
+  width: 100%;
+  align-items: center;
+`;
+
+export const Description = styled.span`
+  font-size: 16px;
+`;
+
+export const Input = styled.input`
+  border: 1px solid #979797;
+  height: 31px;
+  color: #979797;
+  border-radius: 11px;
+  box-sizing: border-box;
+  width: 236px;
 `;

@@ -1,6 +1,8 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 
+import 'react-datepicker/dist/react-datepicker.css';
+
 import JogIcon from 'assets/jog.js';
 import AddButtonIcon from 'assets/add-button.js';
 import SadFace from 'assets/sad-face.js';
