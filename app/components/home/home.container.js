@@ -5,6 +5,12 @@ import axios from 'axios';
 import Home from './home';
 
 class HomeContainer extends React.Component {
+  componentDidMount() {
+    if (window.localStorage.getItem('token')) {
+      this.props.history.push('/jogs');
+    }
+  }
+
   handleLogin = () => {
     let formData = new FormData();
     formData.append('uuid', 'hello');
@@ -16,12 +22,6 @@ class HomeContainer extends React.Component {
     })
       .then(res => window.localStorage.setItem('token', res.data.response.access_token))
       .catch(err => console.log(err));
-  }
-
-  componentDidMount() {
-    if (window.localStorage.getItem('token')) {
-      this.props.history.push('/jogs');
-    }
   }
 
   render() {

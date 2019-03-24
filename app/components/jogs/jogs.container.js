@@ -25,6 +25,14 @@ class JogsContainer extends React.Component {
     this.props.history.push('/add-record');
   }
 
+  onStartDateChange = date => {
+    this.setState({startDate: date});
+  }
+
+  onEndDateChange = date => {
+    this.setState({endDate: date});
+  }
+
   render() {
     const {startDate, endDate, jogs} = this.state;
 
@@ -32,6 +40,8 @@ class JogsContainer extends React.Component {
       <Jogs 
         startDate={startDate}
         endDate={endDate}
+        onStartDateChange={this.onStartDateChange}
+        onEndDateChange={this.onEndDateChange}
         jogs={startDate && endDate ? this.checkDate(jogs) : jogs}
         createJog={this.createJog}
       />

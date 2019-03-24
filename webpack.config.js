@@ -71,7 +71,8 @@ module.exports = {
     alias: {
       components: path.resolve(__dirname, 'app/components'),
       common: path.resolve(__dirname, 'app/components/common'),
-      assets: path.resolve(__dirname, 'app/assets')
+      assets: path.resolve(__dirname, 'app/assets'),
+      resources: path.resolve(__dirname, 'app/resources')
     }
   },
   devServer: {

@@ -31,6 +31,7 @@ export const SaveButton = styled.button`
   color: white;
   font-size: 12px
   font-weight: 500;
+  outline: none;
 `;
 
 export const Cancel = styled.button`
@@ -39,6 +40,7 @@ export const Cancel = styled.button`
   right: 27px;
   background: none;
   border: none;
+  outline: none;
 `;
 
 export const DatePicker = styled(ReactDatePicker)`
@@ -48,6 +50,8 @@ export const DatePicker = styled(ReactDatePicker)`
   border-radius: 11px;
   box-sizing: border-box;
   width: 236px;
+  padding-left: 15px;
+  outline: none;
 `;
 
 export const InputWithDescription = styled.div`
@@ -58,7 +62,7 @@ export const InputWithDescription = styled.div`
 `;
 
 export const Description = styled.span`
-  font-size: 16px;
+  font-size: 18px;
 `;
 
 export const Input = styled.input`
@@ -68,4 +72,5 @@ export const Input = styled.input`
   border-radius: 11px;
   box-sizing: border-box;
   width: 236px;
+  outline: none;
 `;

@@ -8,17 +8,29 @@ class AddRecordContainer extends React.Component {
     date: null
   }
 
+  onDateChange = date => {
+    this.setState({date});
+  }
+
+  onBackClick = () => {
+    this.props.history.goBack();
+  }
+
   render() {
     const {date} = this.state;
   
     return (
-      <AddRecord date={date}/>
+      <AddRecord
+        onBackClick={this.onBackClick} 
+        onDateChange={this.onDateChange} 
+        date={date}
+      />
     );
   }
 }
 
 AddRecordContainer.propTypes = {
-
+  history: PropTypes.object.isRequired
 };
 
 export default AddRecordContainer;

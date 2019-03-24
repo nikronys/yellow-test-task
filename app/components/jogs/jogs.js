@@ -29,6 +29,8 @@ const Jogs = props => {
     startDate,
     endDate,
     jogs,
+    onStartDateChange,
+    onEndDateChange,
     createJog
   } = props;
 
@@ -51,9 +53,9 @@ const Jogs = props => {
       <Header />
       <DatePickersContainer>
         <Text>Date from</Text>
-        <DatePicker selected={startDate}/>
+        <DatePicker selected={startDate} onChange={onStartDateChange}/>
         <Text>Date to</Text>
-        <DatePicker selected={endDate}/>
+        <DatePicker selected={endDate} onChange={onEndDateChange}/>
       </DatePickersContainer>
       <Main>
         {jogs.length 
@@ -79,7 +81,9 @@ const Jogs = props => {
 };
 
 Jogs.propTypes = {
-  createJog: PropTypes.func.isRequired
+  createJog: PropTypes.func.isRequired,
+  onStartDateChange: PropTypes.func.isRequired,
+  onEndDateChange: PropTypes.func.isRequired
 };
 
 export default Jogs;
