@@ -25,7 +25,10 @@ class JogsContainer extends React.Component {
         getJogs(res.data.response.jogs);
         this.setState({loading: false});
       })
-      .catch(err => console.log(err));
+      .catch(err => {
+        console.log(err);
+        this.props.history.goBack();
+      });
   }
   
   checkDate = jog => {

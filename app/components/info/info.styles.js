@@ -16,8 +16,9 @@ export const Title = styled.div`
 
 export const Description = styled.p`
   line-height: 24px;
-  size: 14px;
+  font-size: 19px;
   color: #979797;
+  line-height: 1.71;
   margin-bottom: 50px;
 `;
 

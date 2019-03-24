@@ -23,8 +23,8 @@ const AddRecord = ({onDateChange, date, onBackClick, handleSubmit}) => {
       <Header />
       <Main>
         <FormBox onSubmit={handleSubmit}>
-          <Cancel onClick={onBackClick}>
-            <CancelIcon />
+          <Cancel type="button" onClick={onBackClick}>
+            <CancelIcon/>
           </Cancel>
           <InputWithDescription>
             <Description>Distance</Description>

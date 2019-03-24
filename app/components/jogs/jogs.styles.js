@@ -13,6 +13,7 @@ export const Main = styled.main`
   display: flex;
   justify-content: center;
   height: calc(100% - 176px);
+  overflow-x: hidden;
 
   ${props => props.loading && css`
     align-items: center;
@@ -34,6 +35,7 @@ export const DatePicker = styled(ReactDatePicker)`
   padding: 0 15px;
   box-sizing: border-box;
   outline: none;
+  cursor: pointer;
 `;
 
 export const RunData = styled.ul`
@@ -71,6 +73,7 @@ export const AddButton = styled.button`
   bottom: 40px;
   right: 40px;
   outline: none;
+  cursor: pointer;
 `;
 
 export const Bold = styled.b`
@@ -102,4 +105,10 @@ export const EmptyJogsButton = styled.button`
   color: #e990f9;
   font-weight: bold;
   outline: none;
+  cursor: pointer;
+
+  &:hover {
+    background: #e990f9;
+    color: white;
+  }
 `;
