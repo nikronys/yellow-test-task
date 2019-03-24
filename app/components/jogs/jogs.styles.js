@@ -12,7 +12,7 @@ export const DatePickersContainer = styled.div`
 export const Main = styled.main`
   display: flex;
   justify-content: center;
-  height: 100%;
+  height: calc(100% - 176px);
 `;
 
 export const Text = styled.span`
@@ -82,6 +82,8 @@ export const EmptyJogsContainer = styled.div`
 export const EmptyJogsTitle = styled.div`
   font-size: 24px;
   color: #979797;
+  margin-top: 47px;
+  margin-bottom: 150px;
 `;
 
 export const EmptyJogsButton = styled.button`

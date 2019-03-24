@@ -21,6 +21,10 @@ class JogsContainer extends React.Component {
     });
   };
 
+  createJog = () => {
+    this.props.history.push('/add-record');
+  }
+
   render() {
     const {startDate, endDate, jogs} = this.state;
 
@@ -29,13 +33,14 @@ class JogsContainer extends React.Component {
         startDate={startDate}
         endDate={endDate}
         jogs={startDate && endDate ? this.checkDate(jogs) : jogs}
+        createJog={this.createJog}
       />
     );
   }
 }
 
 JogsContainer.propTypes = {
-
+  history: PropTypes.object.isRequired
 };
 
 export default JogsContainer;

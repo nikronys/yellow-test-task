@@ -15,9 +15,9 @@ import {
   InputWithDescription,
   Description,
   Input
-} from './addJog.styles.js';
+} from './addRecord.styles.js';
 
-const AddJog = () => {
+const AddRecord = () => {
   return (
     <React.Fragment>
       <Header />
@@ -35,7 +35,7 @@ const AddJog = () => {
             <Input type='number'/>
           </InputWithDescription>
           <InputWithDescription>
-            <Description>Time</Description>
+            <Description>Date</Description>
             <DatePicker />
           </InputWithDescription>
           <SaveButton>Save</SaveButton>
@@ -45,8 +45,8 @@ const AddJog = () => {
   );
 };
 
-AddJog.propTypes = {
+AddRecord.propTypes = {
 
 };
 
-export default AddJog;
+export default AddRecord;

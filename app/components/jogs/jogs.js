@@ -28,7 +28,8 @@ const Jogs = props => {
   const {
     startDate,
     endDate,
-    jogs
+    jogs,
+    createJog
   } = props;
 
   const renderRunStatistic = (run, index) => {
@@ -64,19 +65,21 @@ const Jogs = props => {
           <EmptyJogsContainer>
             <SadFace />
             <EmptyJogsTitle>Nothing is here</EmptyJogsTitle>
-            <EmptyJogsButton>Create your jog first</EmptyJogsButton>
+            <EmptyJogsButton onClick={createJog}>Create your jog first</EmptyJogsButton>
           </EmptyJogsContainer>
         }
       </Main>
-      <AddButton>
-        <AddButtonIcon />
-      </AddButton> 
+      {!!jogs.length && 
+        <AddButton>
+          <AddButtonIcon />
+        </AddButton>
+      }
     </React.Fragment>
   );
 };
 
 Jogs.propTypes = {
-
+  createJog: PropTypes.func.isRequired
 };
 
 export default Jogs;
