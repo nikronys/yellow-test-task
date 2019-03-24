@@ -1,7 +1,7 @@
 import styled from 'styled-components';
 import ReactDatePicker from 'react-datepicker';
 
-export const FormBox = styled.div`
+export const FormBox = styled.form`
   height: 379px;
   width: 503px;
   background: #7ed321;

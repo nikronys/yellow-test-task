@@ -30,4 +30,11 @@ export const LoginButton = styled.button`
   color: white;
   font-size: 20px
   font-weight: 500;
+  outline: none;
+  positivion: relative;
+
+  &:hover {
+    background: white;
+    color: black;
+  }
 `;

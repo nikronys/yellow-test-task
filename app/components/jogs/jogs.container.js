@@ -1,14 +1,20 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import jogsProps from './mockData';
+import * as jogsActions from 'resources/jogs/jogs.actions';
+import { connect } from 'react-redux';
 
 import Jogs from './jogs';
 
 class JogsContainer extends React.Component {
   state = {
     startDate: null,
-    endDate: null,
-    jogs: jogsProps
+    endDate: null
+  }
+
+  componentDidMount() {
+    const {getJogs} = this.props;
+    
+    getJogs();
   }
   
   checkDate = jog => {
@@ -34,7 +40,8 @@ class JogsContainer extends React.Component {
   }
 
   render() {
-    const {startDate, endDate, jogs} = this.state;
+    const {startDate, endDate} = this.state;
+    const {jogs} = this.props;
 
     return (
       <Jogs 
@@ -49,8 +56,26 @@ class JogsContainer extends React.Component {
   }
 }
 
-JogsContainer.propTypes = {
-  history: PropTypes.object.isRequired
+const mapStateToProps = state => {
+  return {
+    jogs: state.jogs
+  };
 };
 
-export default JogsContainer;
+const mapDispatchToProps = {
+  getJogs: jogsActions.getJogs,
+};
+
+JogsContainer.propTypes = {
+  history: PropTypes.object.isRequired,
+  getJogs: PropTypes.func.isRequired,
+  jogs: PropTypes.arrayOf(PropTypes.shape({
+    id: PropTypes.number.isRequired,
+    user_id: PropTypes.string.isRequired, //eslint-disable-line
+    distance: PropTypes.number.isRequired,
+    time: PropTypes.number.isRequired,
+    date: PropTypes.number.isRequired,
+  })).isRequired,
+};
+
+export default connect(mapStateToProps, mapDispatchToProps)(JogsContainer);

@@ -95,4 +95,5 @@ export const EmptyJogsButton = styled.button`
   font-size: 18px;
   color: #e990f9;
   font-weight: bold;
+  outline: none;
 `;

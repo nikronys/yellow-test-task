@@ -1,5 +1,6 @@
 import React from 'react';
 import PropTypes from 'prop-types';
+import moment from 'moment';
 
 import 'react-datepicker/dist/react-datepicker.css';
 
@@ -36,13 +37,13 @@ const Jogs = props => {
 
   const renderRunStatistic = (run, index) => {
     return (
-      <RunElement key={`${run.date + index + run.speed}`} resetMargin={index === jogs.length - 1}>
+      <RunElement key={run.id} resetMargin={index === jogs.length - 1}>
         <JogIcon />
         <RunData>
-          <RunDataElement resetMargin>{run.date}</RunDataElement>
+          <RunDataElement resetMargin>{moment(run.date).format('DD.MM.YYYY')}</RunDataElement>
           <RunDataElement><Bold>Speed:</Bold> {run.speed}</RunDataElement>
           <RunDataElement><Bold>Distance:</Bold> {run.distance} km</RunDataElement>
-          <RunDataElement><Bold>Time:</Bold>: {run.time} min</RunDataElement>
+          <RunDataElement><Bold>Time:</Bold> {run.time} min</RunDataElement>
         </RunData>
       </RunElement>
     );
@@ -83,7 +84,16 @@ const Jogs = props => {
 Jogs.propTypes = {
   createJog: PropTypes.func.isRequired,
   onStartDateChange: PropTypes.func.isRequired,
-  onEndDateChange: PropTypes.func.isRequired
+  onEndDateChange: PropTypes.func.isRequired,
+  startDate: PropTypes.object,
+  endDate: PropTypes.object,
+  jogs: PropTypes.arrayOf(PropTypes.shape({
+    id: PropTypes.number.isRequired,
+    user_id: PropTypes.string.isRequired, //eslint-disable-line
+    distance: PropTypes.number.isRequired,
+    time: PropTypes.number.isRequired,
+    date: PropTypes.number.isRequired,
+  })).isRequired,
 };
 
 export default Jogs;

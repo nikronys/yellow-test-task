@@ -1,11 +1,11 @@
 import axios from 'axios';
 
-export const sendJogRecord = async (date, time, distance) => {
-  let formData = new FormData();
-  formData.append('date', date);
-  formData.append('time', time);
-  formData.append('distance', distance);
-  const response = await axios.post('https://jogtracker.herokuapp.com/api/v1/data/jog', formData);
+export const fetchJogs = async () => {
+  const response = await axios.get('https://jogtracker.herokuapp.com/api/v1/data/sync', {
+    headers: {
+      'Authorization': 'Bearer ' + window.localStorage.getItem('token')
+    }
+  });
 
-  console.log(response);
+  return response.data.response.jogs;
 };

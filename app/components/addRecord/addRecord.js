@@ -17,28 +17,28 @@ import {
   Input
 } from './addRecord.styles.js';
 
-const AddRecord = ({onDateChange, date, onBackClick}) => {
+const AddRecord = ({onDateChange, date, onBackClick, handleSubmit}) => {
   return (
     <React.Fragment>
       <Header />
       <Main>
-        <FormBox>
+        <FormBox onSubmit={handleSubmit}>
           <Cancel onClick={onBackClick}>
             <CancelIcon />
           </Cancel>
           <InputWithDescription>
             <Description>Distance</Description>
-            <Input/>
+            <Input name='distance' type="text"/>
           </InputWithDescription>
           <InputWithDescription>
             <Description>Time</Description>
-            <Input/>
+            <Input name='time' type="text"/>
           </InputWithDescription>
           <InputWithDescription>
             <Description>Date</Description>
             <DatePicker selected={date} onChange={onDateChange}/>
           </InputWithDescription>
-          <SaveButton>Save</SaveButton>
+          <SaveButton type="submit">Save</SaveButton>
         </FormBox>
       </Main> 
     </React.Fragment>
@@ -48,7 +48,8 @@ const AddRecord = ({onDateChange, date, onBackClick}) => {
 AddRecord.propTypes = {
   onDateChange: PropTypes.func.isRequired,
   date: PropTypes.object,
-  onBackClick: PropTypes.func
+  onBackClick: PropTypes.func.isRequired,
+  handleSubmit: PropTypes.func.isRequired
 };
 
 export default AddRecord;

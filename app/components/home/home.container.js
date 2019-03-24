@@ -20,7 +20,11 @@ class HomeContainer extends React.Component {
         'Content-Type': 'application/x-www-form-urlencoded'
       }
     })
-      .then(res => window.localStorage.setItem('token', res.data.response.access_token))
+      .then(res => {
+        window.localStorage.setItem('token', res.data.response.access_token);
+        this.props.history.push('/jogs');
+        console.log(res);
+      })
       .catch(err => console.log(err));
   }
 
