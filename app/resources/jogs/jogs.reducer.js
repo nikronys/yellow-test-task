@@ -1,6 +1,6 @@
 import { GET_JOGS } from './jogs.actions';
 
-export const getJogsReducer = (state = [], action) => {
+export const jogs = (state = [], action) => {
   switch (action.type) {
   case GET_JOGS:
     return action.payload;
@@ -9,4 +9,4 @@ export const getJogsReducer = (state = [], action) => {
   }
 };
 
-export default getJogsReducer;
+export default jogs;

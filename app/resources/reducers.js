@@ -1,9 +1,11 @@
 import { combineReducers } from 'redux';
 
-import {getJogsReducer as jogs} from './jogs/jogs.reducer';
+import {jogs} from './jogs/jogs.reducer';
+import {filter} from './filter/filter.reducer';
 
 const reducers = {
   jogs,
+  filter
 };
 
 export default combineReducers(reducers);

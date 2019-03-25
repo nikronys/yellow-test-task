@@ -1,6 +1,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import * as jogsActions from 'resources/jogs/jogs.actions';
+import * as filterActions from 'resources/filter/filter.actions';
 import { connect } from 'react-redux';
 import axios from 'axios';
 
@@ -8,8 +9,6 @@ import Jogs from './jogs';
 
 class JogsContainer extends React.Component {
   state = {
-    startDate: null,
-    endDate: null,
     loading: true
   }
 
@@ -31,11 +30,11 @@ class JogsContainer extends React.Component {
       });
   }
   
-  checkDate = jog => {
-    const {startDate, endDate} = this.state;
+  checkDate = jogs => {
+    const {startDate, endDate} = this.props;
 
-    return jog.filter(el => {
-      if (el.date >= startDate && el.date <= endDate) {
+    return jogs.filter(el => {
+      if (el.date >= startDate.getTime() / 1000 && el.date <= endDate.getTime() / 1000) {
         return true;
       }
     });
@@ -45,24 +44,16 @@ class JogsContainer extends React.Component {
     this.props.history.push('/add-record');
   }
 
-  onStartDateChange = date => {
-    this.setState({startDate: date});
-  }
-
-  onEndDateChange = date => {
-    this.setState({endDate: date});
-  }
-
   render() {
-    const {startDate, endDate, loading} = this.state;
-    const {jogs} = this.props;
+    const {loading} = this.state;
+    const {startDate, endDate, jogs, setStartDate, setEndDate} = this.props;
 
     return (
       <Jogs 
         startDate={startDate}
         endDate={endDate}
-        onStartDateChange={this.onStartDateChange}
-        onEndDateChange={this.onEndDateChange}
+        onStartDateChange={setStartDate}
+        onEndDateChange={setEndDate}
         jogs={startDate && endDate ? this.checkDate(jogs) : jogs}
         createJog={this.createJog}
         loading={loading}
@@ -73,12 +64,16 @@ class JogsContainer extends React.Component {
 
 const mapStateToProps = state => {
   return {
-    jogs: state.jogs
+    jogs: state.jogs,
+    startDate: state.filter.startDate,
+    endDate: state.filter.endDate
   };
 };
 
 const mapDispatchToProps = {
   getJogs: jogsActions.getJogs,
+  setStartDate: filterActions.setStartDate,
+  setEndDate: filterActions.setEndDate
 };
 
 JogsContainer.propTypes = {
@@ -91,6 +86,10 @@ JogsContainer.propTypes = {
     time: PropTypes.number.isRequired,
     date: PropTypes.number.isRequired,
   })).isRequired,
+  startDate: PropTypes.date,
+  endDate: PropTypes.date,
+  setStartDate: PropTypes.func.isRequired,
+  setEndDate: PropTypes.func.isRequired
 };
 
 export default connect(mapStateToProps, mapDispatchToProps)(JogsContainer);

@@ -49,8 +49,8 @@ const Jogs = props => {
       <RunElement key={run.id}>
         <JogIcon />
         <RunData>
-          <RunDataElement resetMargin>{moment(run.date).format('DD.MM.YYYY')}</RunDataElement>
-          <RunDataElement><Bold>Speed:</Bold> {run.speed}</RunDataElement>
+          <RunDataElement resetMargin>{moment(run.date * 1000).format('DD.MM.YYYY')}</RunDataElement>
+          <RunDataElement><Bold>Speed:</Bold> {Math.round(run.distance / run.time)} km/min</RunDataElement>
           <RunDataElement><Bold>Distance:</Bold> {run.distance} km</RunDataElement>
           <RunDataElement><Bold>Time:</Bold> {run.time} min</RunDataElement>
         </RunData>
