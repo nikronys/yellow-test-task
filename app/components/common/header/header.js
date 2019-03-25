@@ -20,9 +20,12 @@ const Header = props => {
         <Navigation>
           <NavLink currentPath={props.location.pathname} href='/jogs'>JOGS</NavLink>
           <NavLink currentPath={props.location.pathname} href='/info'>INFO</NavLink>
-          <NavLink currentPath={props.location.pathname} href='/contact-us'>CONTACT US</NavLink>
-          <FilterButton>
-            <Filter />
+          <NavLink addMargin={props.applyFilter} currentPath={props.location.pathname} href='/contact-us'>CONTACT US</NavLink>
+          <FilterButton  onClick={props.setFilter}>
+            {props.applyFilter 
+              ? <Filter /> 
+              : <FilterActive />
+            }
           </FilterButton>
         </Navigation>
       }
@@ -31,7 +34,9 @@ const Header = props => {
 };
 
 Header.propTypes = {
-  location: PropTypes.object.isRequired
+  location: PropTypes.object.isRequired,
+  applyFilter: PropTypes.bool.isRequired,
+  setFilter: PropTypes.func.isRequired
 };
 
 export default withRouter(Header);

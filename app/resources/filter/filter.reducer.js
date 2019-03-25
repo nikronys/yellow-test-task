@@ -13,7 +13,7 @@ export const filter = (state = initialValues, action) => {
   case SET_END_DATE:
     return {...state, endDate: action.payload};
   case APPLY_FILTER:
-    return {...state, applyFilter: action.payload};
+    return {...state, applyFilter: !state.applyFilter};
   default:
     return state;
   }

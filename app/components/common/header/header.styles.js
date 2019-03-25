@@ -34,6 +34,10 @@ export const NavLink = styled.a`
   ${props => props.currentPath === props.href && css`
     border-bottom: 2px solid white;
   `}
+
+  ${props => props.addMargin && css`
+    margin-right: 59px;
+  `}
 `;
 
 export const FilterButton = styled.button`

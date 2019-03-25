@@ -12,7 +12,6 @@ export const setEndDate = endDate => ({
   payload: endDate,
 });
 
-export const applyFilter = endDate => ({
-  type: APPLY_FILTER,
-  payload: endDate,
+export const setFilter = () => ({
+  type: APPLY_FILTER
 });
