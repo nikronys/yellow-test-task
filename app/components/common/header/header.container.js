@@ -9,14 +9,19 @@ import Header from './header';
 class HeaderContainer extends React.Component {
   render() {
     return (
-      <Header applyFilter={this.props.applyFilter} setFilter={this.props.setFilter} />
+      <Header 
+        applyFilter={this.props.applyFilter} 
+        setFilter={this.props.setFilter} 
+        isMobile={this.props.isMobile}
+      />
     );
   }
 }
 
 const mapStateToProps = state => {
   return {
-    applyFilter: state.filter.applyFilter
+    applyFilter: state.filter.applyFilter,
+    isMobile: state.browser.is.mobile
   };
 };
 
@@ -26,7 +31,8 @@ const mapDispatchToProps = {
 
 HeaderContainer.propTypes = {
   applyFilter: PropTypes.bool.isRequired,
-  setFilter: PropTypes.func.isRequired
+  setFilter: PropTypes.func.isRequired,
+  isMobile: PropTypes.bool.isRequired
 };
 
 export default connect(mapStateToProps, mapDispatchToProps)(HeaderContainer);

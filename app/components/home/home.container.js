@@ -3,6 +3,7 @@ import PropTypes from 'prop-types';
 import axios from 'axios';
 
 import Home from './home';
+import { connect } from 'react-redux';
 
 class HomeContainer extends React.Component {
   componentDidMount() {
@@ -29,13 +30,20 @@ class HomeContainer extends React.Component {
 
   render() {
     return (
-      <Home handleLogin={this.handleLogin}/>
+      <Home isMobile={this.props.isMobile} handleLogin={this.handleLogin}/>
     );
   }
 }
 
-HomeContainer.propTypes = {
-  history: PropTypes.object.isRequired
+const mapStateToProps = state => {
+  return {
+    isMobile: state.browser.is.mobile
+  };
 };
 
-export default HomeContainer;
+HomeContainer.propTypes = {
+  history: PropTypes.object.isRequired,
+  isMobile: PropTypes.bool.isRequired
+};
+
+export default connect(mapStateToProps)(HomeContainer);

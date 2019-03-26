@@ -6,11 +6,21 @@ export const HeaderWrapper = styled.header`
   display: flex;
   justify-content: space-between;
   align-items: center;
+
+  @media (max-width: 576px) {
+    ${props => props.theme.header.heightMobile && css`
+      height: ${props.theme.header.heightMobile}
+    `}
+  }
 `;
 
 export const Link = styled.a`
   margin-left: 37px;
   cursor: pointer;
+
+  @media (max-width: 576px) {
+    margin-left: 18px;
+  }
 `;
 
 export const Logo = styled.img`

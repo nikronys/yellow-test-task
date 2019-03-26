@@ -1,6 +1,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import {withRouter} from 'react-router-dom';
+import { withRouter } from 'react-router-dom';
+import { withTheme } from 'styled-components';
 
 import Logo from 'assets/logo.js';
 import Filter from 'assets/filter.js';
@@ -8,25 +9,40 @@ import FilterActive from 'assets/filter-active.js';
 
 import {HeaderWrapper, Link, Navigation, NavLink, FilterButton} from './header.styles.js';
 
-const Header = props => {
+const Header = ({
+  isMobile, 
+  theme, 
+  location, 
+  applyFilter, 
+  setFilter
+}) => {
   return (
     <HeaderWrapper>
       <Link href='/'>
-        <Logo/>
+        <Logo 
+          height={isMobile && theme.header.headerIconMobileHeight}
+          width={isMobile && theme.header.headerIconMobileWidth}
+        />
       </Link>
-      {props.location.pathname === '/' 
+      {location.pathname === '/' 
         ? null
         : 
         <Navigation>
-          <NavLink currentPath={props.location.pathname} href='/jogs'>JOGS</NavLink>
-          <NavLink currentPath={props.location.pathname} href='/info'>INFO</NavLink>
-          <NavLink addMargin={props.applyFilter} currentPath={props.location.pathname} href='/contact-us'>CONTACT US</NavLink>
-          <FilterButton  onClick={props.setFilter}>
-            {props.applyFilter 
-              ? <Filter /> 
-              : <FilterActive />
-            }
-          </FilterButton>
+          {isMobile 
+            ? null
+            : (
+              <React.Fragment>
+                <NavLink currentPath={location.pathname} href='/jogs'>JOGS</NavLink>
+                <NavLink currentPath={location.pathname} href='/info'>INFO</NavLink>
+                <NavLink addMargin={applyFilter} currentPath={location.pathname} href='/contact-us'>CONTACT US</NavLink>
+                <FilterButton  onClick={setFilter}>
+                  {applyFilter 
+                    ? <Filter /> 
+                    : <FilterActive />
+                  }
+                </FilterButton>
+              </React.Fragment>
+            )}
         </Navigation>
       }
     </HeaderWrapper>
@@ -36,7 +52,9 @@ const Header = props => {
 Header.propTypes = {
   location: PropTypes.object.isRequired,
   applyFilter: PropTypes.bool.isRequired,
-  setFilter: PropTypes.func.isRequired
+  setFilter: PropTypes.func.isRequired,
+  isMobile: PropTypes.bool.isRequired,
+  theme: PropTypes.object.isRequired
 };
 
-export default withRouter(Header);
+export default withRouter(withTheme(Header));
