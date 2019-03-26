@@ -8,6 +8,14 @@ class AddRecordContainer extends React.Component {
     date: null
   }
 
+  componentDidMount() {
+    const token = window.localStorage.getItem('token');
+
+    if (!token) {
+      this.props.history.push('/');
+    }
+  }
+
   onDateChange = date => {
     this.setState({date});
   }

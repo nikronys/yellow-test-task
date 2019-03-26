@@ -30,20 +30,22 @@ class HomeContainer extends React.Component {
 
   render() {
     return (
-      <Home isMobile={this.props.isMobile} handleLogin={this.handleLogin}/>
+      <Home expandMenu={this.props.expandMenu} isMobile={this.props.isMobile} handleLogin={this.handleLogin}/>
     );
   }
 }
 
 const mapStateToProps = state => {
   return {
-    isMobile: state.browser.is.mobile
+    isMobile: state.browser.is.mobile,
+    expandMenu: state.expandMenu
   };
 };
 
 HomeContainer.propTypes = {
   history: PropTypes.object.isRequired,
-  isMobile: PropTypes.bool.isRequired
+  isMobile: PropTypes.bool.isRequired,
+  expandMenu: PropTypes.bool.isRequired
 };
 
 export default connect(mapStateToProps)(HomeContainer);
