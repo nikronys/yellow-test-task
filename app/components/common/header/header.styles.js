@@ -8,7 +8,10 @@ export const HeaderWrapper = styled.header`
   align-items: center;
 
   @media (max-width: 576px) {
-    ${props => props.theme.header.heightMobile && css`
+    ${props => props.expandMenu && css`
+      background: white;
+    `}
+    ${props => css`
       height: ${props.theme.header.heightMobile}
     `}
   }
@@ -56,4 +59,21 @@ export const FilterButton = styled.button`
   cursor: pointer;
   border: none;
   margin-right: 30px;
+`;
+
+export const MenuButton = styled.button`
+  background: none;
+  outline: none;
+  cursor: pointer;
+  border: none;
+  margin-right: 18px;
+  cursor: pointer;
+`;
+
+export const Cancel = styled.button`
+  background: none;
+  border: none;
+  outline: none;
+  cursor: pointer;
+  margin-right: 15px;
 `;

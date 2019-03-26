@@ -6,5 +6,9 @@ export default {
   },
   home: {
     background: '#e990f9'
+  },
+  common: {
+    green: '#7ed321',
+    grey: '#b0abab'
   }
 };
