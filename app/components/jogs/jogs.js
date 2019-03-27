@@ -10,6 +10,7 @@ import JogIcon from 'assets/jog.js';
 import AddButtonIcon from 'assets/add-button.js';
 import SadFace from 'assets/sad-face.js';
 
+import Routing from 'common/routing/routing';
 import Header from 'common/header/header.container';
 import {
   DatePickersContainer, 
@@ -41,15 +42,16 @@ const Jogs = props => {
     onStartDateChange,
     onEndDateChange,
     createJog,
-    loading
+    loading,
+    expandMenu
   } = props;
 
-  const renderRunStatistic = run => {
+  const renderRunStatistic = (run, index) => {
     return (
-      <RunElement key={run.id}>
+      <RunElement index={index} lastElementIndex={jogs.length - 1} key={run.id}>
         <JogIcon />
         <RunData>
-          <RunDataElement resetMargin>{moment(run.date * 1000).format('DD.MM.YYYY')}</RunDataElement>
+          <RunDataElement>{moment(run.date * 1000).format('DD.MM.YYYY')}</RunDataElement>
           <RunDataElement><Bold>Speed:</Bold> {Math.round(run.distance / run.time)} km/min</RunDataElement>
           <RunDataElement><Bold>Distance:</Bold> {run.distance} km</RunDataElement>
           <RunDataElement><Bold>Time:</Bold> {run.time} min</RunDataElement>
@@ -61,35 +63,40 @@ const Jogs = props => {
   return (
     <React.Fragment>
       <Header />
-      <DatePickersContainer>
-        <Text>Date from</Text>
-        <DatePicker selected={startDate} onChange={onStartDateChange}/>
-        <Text>Date to</Text>
-        <DatePicker selected={endDate} onChange={onEndDateChange}/>
-      </DatePickersContainer>
-      <Main loading={loading}>
-        {loading ? 
-          <CircleLoader
-            css={override}
-            sizeUnit={'px'}
-            size={150}
-            color={'#123abc'}
-            loading={loading}
-          /> :
-          jogs.length 
-            ? 
-            <RunList>
-              {jogs.map(renderRunStatistic)}
-            </RunList>
-            :
-            <EmptyJogsContainer>
-              <SadFace />
-              <EmptyJogsTitle>Nothing is here</EmptyJogsTitle>
-              <EmptyJogsButton onClick={createJog}>Create your jog first</EmptyJogsButton>
-            </EmptyJogsContainer>
-        }
-      </Main>
-      {!!jogs.length && !loading &&
+      {expandMenu 
+        ? <Routing />
+        :
+        <React.Fragment>
+          <DatePickersContainer>
+            <Text>Date from</Text>
+            <DatePicker selected={startDate} onChange={onStartDateChange}/>
+            <Text>Date to</Text>
+            <DatePicker selected={endDate} onChange={onEndDateChange}/>
+          </DatePickersContainer>
+          <Main loading={loading && !expandMenu}>
+            {loading ? 
+              <CircleLoader
+                css={override}
+                sizeUnit={'px'}
+                size={150}
+                color={'#123abc'}
+                loading={loading}
+              /> :
+              jogs.length 
+                ? 
+                <RunList>
+                  {jogs.map(renderRunStatistic)}
+                </RunList>
+                :
+                <EmptyJogsContainer>
+                  <SadFace />
+                  <EmptyJogsTitle>Nothing is here</EmptyJogsTitle>
+                  <EmptyJogsButton onClick={createJog}>Create your jog first</EmptyJogsButton>
+                </EmptyJogsContainer>
+            }
+          </Main>
+        </React.Fragment>}
+      {!!jogs.length && !loading && !expandMenu &&
         <AddButton onClick={createJog}>
           <AddButtonIcon />
         </AddButton>
@@ -111,7 +118,8 @@ Jogs.propTypes = {
     time: PropTypes.number.isRequired,
     date: PropTypes.number.isRequired,
   })).isRequired,
-  loading: PropTypes.bool.isRequired
+  loading: PropTypes.bool.isRequired,
+  expandMenu: PropTypes.bool.isRequired
 };
 
 export default Jogs;

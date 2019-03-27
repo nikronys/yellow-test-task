@@ -2,6 +2,7 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import axios from 'axios';
 import AddRecord from './addRecord';
+import { connect } from 'react-redux';
 
 class AddRecordContainer extends React.Component {
   state = {
@@ -49,13 +50,21 @@ class AddRecordContainer extends React.Component {
         onDateChange={this.onDateChange} 
         date={date}
         handleSubmit={this.handleSubmit}
+        expandMenu={this.props.expandMenu}
       />
     );
   }
 }
 
-AddRecordContainer.propTypes = {
-  history: PropTypes.object.isRequired
+const mapStateToProps = state => {
+  return {
+    expandMenu: state.expandMenu
+  };
 };
 
-export default AddRecordContainer;
+AddRecordContainer.propTypes = {
+  history: PropTypes.object.isRequired,
+  expandMenu: PropTypes.bool.isRequired
+};
+
+export default connect(mapStateToProps)(AddRecordContainer);

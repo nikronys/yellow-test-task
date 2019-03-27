@@ -12,11 +12,12 @@ export const DatePickersContainer = styled.div`
 export const Main = styled.main`
   display: flex;
   justify-content: center;
-  height: calc(100% - 176px);
   overflow-x: hidden;
+  height: calc(100% - 176px);
 
   ${props => props.loading && css`
     align-items: center;
+    height: calc(100% - 176px);
   `}
 `;
 
@@ -44,17 +45,26 @@ export const RunData = styled.ul`
 `;
 
 export const RunList = styled.ul`
-  margin-top: 53px;
+  width: 100%;
 `;
 
 export const RunElement = styled.li`
   display: flex;
   align-items: center;
-  margin-bottom: 80px;
+  padding-top: 53px;
+  padding-bottom: 80px;
+  justify-content: center;
 
   ${props => props.resetMargin && css`
     margin-bottom: 0;
   `}
+
+  @media (max-width: 576px) {
+    border-bottom: 1px solid #d7d7d7;
+    ${props => props.index === props.lastElementIndex && css`
+      border: none;
+    `}
+  }
 `;
 
 export const RunDataElement = styled.li`
@@ -74,6 +84,11 @@ export const AddButton = styled.button`
   right: 40px;
   outline: none;
   cursor: pointer;
+
+  @media (max-width: 576px) {
+    bottom: 20px;
+    right: 10px;
+  }
 `;
 
 export const Bold = styled.b`
