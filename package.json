@@ -8,11 +8,26 @@
     "start": "node server.js",
     "dev": "webpack-dev-server --open --mode development",
     "build": "webpack --mode production",
-    "heroku-postbuild": "npm run build"
+    "heroku-postbuild": "npm run build",
+    "test": "jest --coverage"
   },
   "repository": {
     "type": "git",
     "url": "git+https://github.com/nikronys/yellow-test-task.git"
+  },
+  "jest": {
+    "setupFilesAfterEnv": [
+      "<rootDir>/app/utils/setupTest.js"
+    ],
+    "moduleNameMapper": {
+      "^assets(.*)$": "<rootDir>/app/assets$1",
+      "^common(.*)$": "<rootDir>/app/components/common$1",
+      "^resources(.*)$": "<rootDir>/app/resources$1"
+    },
+    "transform": {
+      "\\.(jpg|jpeg|png|gif|eot|otf|webp|svg|ttf|woff|woff2|mp4|webm|wav|mp3|m4a|aac|oga)$": "<rootDir>/app/utils/assetsTransformer.js",
+      "^.+\\.jsx?$": "babel-jest"
+    }
   },
   "author": "Alexey Klimovich",
   "license": "MIT",
@@ -43,10 +58,14 @@
     "babel-polyfill": "^6.26.0",
     "css-loader": "^2.1.1",
     "emotion": "^10.0.9",
+    "enzyme": "^3.9.0",
+    "enzyme-adapter-react-16": "^1.11.2",
     "eslint": "^5.15.3",
     "eslint-plugin-react": "^7.12.4",
     "html-loader": "^0.5.5",
     "html-webpack-plugin": "^3.2.0",
+    "identity-obj-proxy": "^3.0.0",
+    "jest": "^24.5.0",
     "prop-types": "^15.7.2",
     "style-loader": "^0.23.1",
     "svg-inline-loader": "^0.8.0",
