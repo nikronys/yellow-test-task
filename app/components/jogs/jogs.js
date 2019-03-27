@@ -6,9 +6,9 @@ import CircleLoader from 'react-spinners/ClipLoader';
 
 import 'react-datepicker/dist/react-datepicker.css';
 
-import JogIcon from 'assets/jog.js';
 import AddButtonIcon from 'assets/add-button.js';
 import SadFace from 'assets/sad-face.js';
+import JogIcon from 'assets/jog.js';
 
 import Routing from 'common/routing/routing';
 import Header from 'common/header/header.container';
@@ -25,7 +25,8 @@ import {
   Bold,
   EmptyJogsContainer,
   EmptyJogsTitle,
-  EmptyJogsButton
+  EmptyJogsButton,
+  JogWrapper
 } from './jogs.styles.js';
 
 const override = css`
@@ -49,7 +50,9 @@ const Jogs = props => {
   const renderRunStatistic = (run, index) => {
     return (
       <RunElement index={index} lastElementIndex={jogs.length - 1} key={run.id}>
-        <JogIcon />
+        <JogWrapper>
+          <JogIcon />
+        </JogWrapper>
         <RunData>
           <RunDataElement>{moment(run.date * 1000).format('DD.MM.YYYY')}</RunDataElement>
           <RunDataElement><Bold>Speed:</Bold> {Math.round(run.distance / run.time)} km/min</RunDataElement>

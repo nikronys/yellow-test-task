@@ -16,7 +16,6 @@ export const FormBox = styled.form`
   margin: auto;
 
   @media (max-width: 576px) {
-    margin-top: 25px;
     padding: 48px 26px 28px 26px;
     border: 2px solid #ffffff;
     width: 300px;

@@ -39,9 +39,17 @@ const Header = ({
               <CancelIcon backgroundColor={expandMenu && theme.common.grey}/>
             </Cancel>
             :
-            <MenuButton onClick={openMenu}>
-              <img src={Menu} alt="Menu"/>
-            </MenuButton>
+            <React.Fragment>
+              {location.pathname !== '/' && <FilterButton onClick={setFilter}>
+                {applyFilter 
+                  ? <Filter isMobile={isMobile}/> 
+                  : <FilterActive isMobile={isMobile}/>
+                }
+              </FilterButton>}
+              <MenuButton onClick={openMenu}>
+                <img src={Menu} alt="Menu"/>
+              </MenuButton>
+            </React.Fragment>
           : location.pathname !== '/' && (
             <React.Fragment>
               <NavLink currentPath={location.pathname} href='/jogs'>JOGS</NavLink>

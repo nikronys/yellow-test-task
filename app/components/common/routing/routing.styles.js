@@ -5,6 +5,7 @@ export const Link = styled.a`
   font-weight: bold;
   font-size: 30px;
   margin-bottom: 30px;
+  color: black;
 
   ${props => props.theme.common.green && css`
     &:hover {

@@ -28,6 +28,17 @@ class AddRecordContainer extends React.Component {
   handleSubmit = event => {
     event.preventDefault();
 
+    //we should validate with Yup and Formik, but I don't have time for this
+    if(!this.state.date || !event.target.time.value || !event.target.distance.value) {
+      alert('Choose date, time and distance');
+      return;
+    }
+
+    if(!(this.state.date instanceof Date) || isNaN(+event.target.time.value) || isNaN(+event.target.distance.value)) {
+      alert('Date must be a valid date, time and distance must be number');
+      return;
+    }
+
     let formData = new FormData();
     formData.append('date', this.state.date);
     formData.append('time', event.target.time.value);

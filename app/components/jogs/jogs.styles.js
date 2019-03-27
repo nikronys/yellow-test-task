@@ -40,8 +40,10 @@ export const DatePicker = styled(ReactDatePicker)`
 `;
 
 export const RunData = styled.ul`
-  margin-left: 46px;
-  float: right;
+`;
+
+export const JogWrapper = styled.div`
+  margin-right: 46px;
 `;
 
 export const RunList = styled.ul`
