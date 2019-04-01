@@ -1,13 +1,15 @@
-export const GET_JOGS = 'GET_JOGS';
-export const APPLY_FILTER = 'APPLY_FILTER';
+import {fetchJogs} from './jogs.api';
+
+export const SET_JOGS = 'SET_JOGS';
 
 export const getJogsAction = jogs => ({
-  type: GET_JOGS,
+  type: SET_JOGS,
   payload: jogs,
 });
 
-export const getJogs = jogs => async dispatch => {
+export const getJogs = () => async dispatch => {
   try {
+    const jogs = await fetchJogs();
     dispatch(getJogsAction(jogs));
   } catch (error) {
     console.log(error);

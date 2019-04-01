@@ -1,8 +1,9 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import axios from 'axios';
-import AddRecord from './addRecord';
 import { connect } from 'react-redux';
+
+import AddRecord from './addRecord';
+import {sendJog} from 'resources/jogs/jogs.api';
 
 class AddRecordContainer extends React.Component {
   state = {
@@ -43,13 +44,8 @@ class AddRecordContainer extends React.Component {
     formData.append('date', this.state.date);
     formData.append('time', event.target.time.value);
     formData.append('distance', event.target.distance.value);
-    axios.post('https://jogtracker.herokuapp.com/api/v1/data/jog', formData, {
-      headers: {
-        'Authorization': 'Bearer ' + window.localStorage.getItem('token')
-      }
-    })
-      .then(() => this.props.history.goBack())
-      .catch(err => console.log(err));
+    
+    sendJog(formData);
   }
 
   render() {

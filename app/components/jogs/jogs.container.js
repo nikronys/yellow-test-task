@@ -3,7 +3,6 @@ import PropTypes from 'prop-types';
 import * as jogsActions from 'resources/jogs/jogs.actions';
 import * as filterActions from 'resources/filter/filter.actions';
 import { connect } from 'react-redux';
-import axios from 'axios';
 
 import Jogs from './jogs';
 
@@ -13,21 +12,8 @@ class JogsContainer extends React.Component {
   }
 
   componentDidMount() {
-    const {getJogs} = this.props;
-
-    axios.get('https://jogtracker.herokuapp.com/api/v1/data/sync', {
-      headers: {
-        'Authorization': 'Bearer ' + window.localStorage.getItem('token')
-      }
-    })
-      .then(res => {
-        getJogs(res.data.response.jogs);
-        this.setState({loading: false});
-      })
-      .catch(err => {
-        console.log(err);
-        this.props.history.goBack();
-      });
+    this.props.getJogs()
+      .then(() => this.setState({ loading: false }));
   }
   
   checkDate = jogs => {

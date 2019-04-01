@@ -1,9 +1,10 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import axios from 'axios';
 
 import Home from './home';
 import { connect } from 'react-redux';
+
+import {login} from 'resources/jogs/jogs.api';
 
 class HomeContainer extends React.Component {
   componentDidMount() {
@@ -12,25 +13,13 @@ class HomeContainer extends React.Component {
     }
   }
 
-  handleLogin = () => {
-    let formData = new FormData();
-    formData.append('uuid', 'hello');
-  
-    axios.post('https://jogtracker.herokuapp.com/api/v1/auth/uuidLogin', formData, {
-      headers: {
-        'Content-Type': 'application/x-www-form-urlencoded'
-      }
-    })
-      .then(res => {
-        window.localStorage.setItem('token', res.data.response.access_token);
-        this.props.history.push('/jogs');
-      })
-      .catch(err => console.log(err));
-  }
-
   render() {
     return (
-      <Home expandMenu={this.props.expandMenu} isMobile={this.props.isMobile} handleLogin={this.handleLogin}/>
+      <Home 
+        expandMenu={this.props.expandMenu} 
+        isMobile={this.props.isMobile} 
+        handleLogin={login}
+      />
     );
   }
 }

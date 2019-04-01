@@ -55,8 +55,8 @@ const Header = ({
               <NavLink currentPath={location.pathname} href='/info'>INFO</NavLink>
               <NavLink addMargin={startDate && endDate} currentPath={location.pathname} href='/contact-us'>CONTACT US</NavLink>
               {startDate && endDate 
-                ? <Filter /> 
-                : <FilterActive />
+                ? <Filter isMobile={isMobile}/> 
+                : <FilterActive isMobile={isMobile}/>
               }
             </React.Fragment>
           )}
