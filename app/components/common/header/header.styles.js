@@ -6,6 +6,7 @@ export const HeaderWrapper = styled.header`
   display: flex;
   justify-content: space-between;
   align-items: center;
+  padding-right: 30px;
 
   @media (max-width: 576px) {
     ${props => props.expandMenu && css`
@@ -51,14 +52,6 @@ export const NavLink = styled.a`
   ${props => props.addMargin && css`
     margin-right: 59px;
   `}
-`;
-
-export const FilterButton = styled.button`
-  background: none;
-  outline: none;
-  cursor: pointer;
-  border: none;
-  margin-right: 30px;
 `;
 
 export const MenuButton = styled.button`

@@ -46,7 +46,7 @@ class JogsContainer extends React.Component {
 
   render() {
     const {loading} = this.state;
-    const {startDate, endDate, jogs, setStartDate, setEndDate, applyFilter, expandMenu} = this.props;
+    const {startDate, endDate, jogs, setStartDate, setEndDate, expandMenu} = this.props;
 
     return (
       <Jogs 
@@ -54,7 +54,7 @@ class JogsContainer extends React.Component {
         endDate={endDate}
         onStartDateChange={setStartDate}
         onEndDateChange={setEndDate}
-        jogs={startDate && endDate && applyFilter ? this.checkDate(jogs) : jogs}
+        jogs={startDate && endDate ? this.checkDate(jogs) : jogs}
         createJog={this.createJog}
         expandMenu={expandMenu}
         loading={loading}
@@ -68,7 +68,6 @@ const mapStateToProps = state => {
     jogs: state.jogs,
     startDate: state.filter.startDate,
     endDate: state.filter.endDate,
-    applyFilter: state.filter.applyFilter,
     expandMenu: state.expandMenu
   };
 };
@@ -93,7 +92,6 @@ JogsContainer.propTypes = {
   endDate: PropTypes.instanceOf(Date),
   setStartDate: PropTypes.func.isRequired,
   setEndDate: PropTypes.func.isRequired,
-  applyFilter: PropTypes.bool.isRequired,
   expandMenu: PropTypes.bool.isRequired
 };
 
