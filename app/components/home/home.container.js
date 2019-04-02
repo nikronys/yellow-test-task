@@ -4,12 +4,14 @@ import PropTypes from 'prop-types';
 import Home from './home';
 import { connect } from 'react-redux';
 
-import {login} from 'resources/jogs/jogs.api';
+import * as jogsActions from 'resources/jogs/jogs.api';
+import * as navigationActions from 'resources/navigation/navigation.actions';
+import {JOGS} from 'utils/routes';
 
 class HomeContainer extends React.Component {
   componentDidMount() {
     if (window.localStorage.getItem('token')) {
-      this.props.history.push('/jogs');
+      this.props.navigate(JOGS);
     }
   }
 
@@ -18,7 +20,7 @@ class HomeContainer extends React.Component {
       <Home 
         expandMenu={this.props.expandMenu} 
         isMobile={this.props.isMobile} 
-        handleLogin={login}
+        handleLogin={this.props.login}
       />
     );
   }
@@ -31,10 +33,15 @@ const mapStateToProps = state => {
   };
 };
 
+const mapDispatchToProps = {
+  navigate: navigationActions.navigate,
+  login: jogsActions.login
+};
+
 HomeContainer.propTypes = {
-  history: PropTypes.object.isRequired,
+  navigate: PropTypes.func.isRequired,
   isMobile: PropTypes.bool.isRequired,
   expandMenu: PropTypes.bool.isRequired
 };
 
-export default connect(mapStateToProps)(HomeContainer);
+export default connect(mapStateToProps, mapDispatchToProps)(HomeContainer);

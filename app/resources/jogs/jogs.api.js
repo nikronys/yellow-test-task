@@ -1,7 +1,8 @@
 import axios from 'axios';
-import history from '../../utils/history';
+import {navigate} from 'resources/navigation/navigation.actions';
+import {JOGS} from 'utils/routes';
 
-export const login = () => {
+export const login = dispatch => {
   let formData = new FormData();
   formData.append('uuid', 'hello');
 
@@ -12,7 +13,7 @@ export const login = () => {
   })
     .then(res => {
       window.localStorage.setItem('token', res.data.response.access_token);
-      history.push('/jogs');
+      dispatch(navigate(JOGS));
     })
     .catch(err => console.log(err));
 };
